@@ -4,8 +4,16 @@
   "description": "Fake shopping mall company portal",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/app"
+    "dev": "nodemon --exec babel-node ./src/app"
   },
-  "author": "Brylimo",
-  "license": "MIT"
+  "author": "Brylimo<icj0103@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
+    "@babel/preset-env": "^7.16.5"
+  }
 }

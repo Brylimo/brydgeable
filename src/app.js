@@ -1,1 +1,3 @@
-console.log("hello\n");
+import express from "express";
+
+console.log("Hello world");

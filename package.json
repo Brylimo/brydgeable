@@ -1,0 +1,11 @@
+{
+  "name": "brydgeable",
+  "version": "1.0.0",
+  "description": "Fake shopping mall company portal",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/app"
+  },
+  "author": "Brylimo",
+  "license": "MIT"
+}

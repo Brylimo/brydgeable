@@ -4,12 +4,13 @@
   "description": "Fake shopping mall company portal",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node ./src/app"
+    "dev": "nodemon --exec babel-node src/app"
   },
   "author": "Brylimo<icj0103@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.17.2"
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.5",

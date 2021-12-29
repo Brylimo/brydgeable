@@ -1,7 +1,7 @@
 import express from "express";
 
 const globalRouter = express.Router();
-const handleHome = (req, res) => res.send("Home");
+const handleHome = (req, res) => res.render("home");
 
 globalRouter.get("/", handleHome);
 

@@ -2,7 +2,7 @@
   "name": "brydgeable",
   "version": "1.0.0",
   "description": "Fake shopping mall company portal",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "dev": "nodemon --exec babel-node src/app"
   },
@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.17.2",
+    "mongoose": "^6.1.4",
     "morgan": "^1.10.0",
     "pug": "^3.0.2"
   },

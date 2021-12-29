@@ -4,6 +4,14 @@ html(lang="ko")
 		title #{title} | brydgeable
 		link(rel="stylesheet" href="https://unpkg.com/mvp.css")
 	body
+		header 
+			nav 
+				ul 
+					li
+						a(href="/") home
+					li 
+						a(href="/login") login
+			h1 brydgeable
 		main
 			block content
 	include partials/footer.pug

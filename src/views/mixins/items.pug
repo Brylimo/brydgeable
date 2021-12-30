@@ -1,0 +1,9 @@
+mixin items(item)
+	div
+		h3
+			a(href=`/item/${item._id}`)=item.title 
+		ul 
+			li=item.description 
+			li=item.createdAt 
+			li=item.views 
+			li=item.likes

@@ -2,9 +2,9 @@
   "name": "brydgeable",
   "version": "1.0.0",
   "description": "Fake shopping mall company portal",
-  "main": "app.js",
+  "main": "init.js",
   "scripts": {
-    "dev": "nodemon --exec babel-node src/app"
+    "dev": "nodemon --exec babel-node src/init"
   },
   "author": "Brylimo<icj0103@gmail.com>",
   "license": "MIT",

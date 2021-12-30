@@ -1,8 +1,9 @@
 import Item from "../models/Item";
 
-export const handleItem = (req, res) => {
+export const handleItem = async (req, res) => {
 	const id = req.params.id;
-	return res.render("item", {title : "item"});
+	const item = await Item.findById(id);
+	return res.render("item", {title : item.title, item});
 };
 
 export const getUpload = (req, res) => res.render("upload", {title: "upload"});

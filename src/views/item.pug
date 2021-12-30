@@ -1,4 +1,6 @@
 extends base
+include mixins/items
 
 block content 
 	h1 #{title}
+	+items(item)

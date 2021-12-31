@@ -4,3 +4,6 @@ include mixins/items
 block content 
 	h1 #{title}
 	+items(item)
+	a(href=`${item._id}/update`) Update &rarr; 
+	br
+	a(href=`${item._id}/delete`) Delete &rarr;

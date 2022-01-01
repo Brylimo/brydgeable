@@ -9,5 +9,9 @@ const itemSchema = new mongoose.Schema({
 	likes: {type: Number, required: true, default: 0}
 });
 
+itemSchema.static('procHashtag', function(hashtags) {
+	return hashtags.split(",").map((word) => word.startsWith("#") ? word : `#${word}`);
+});
+
 const Item = mongoose.model("Item", itemSchema);
 export default Item;

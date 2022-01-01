@@ -16,8 +16,9 @@ export const postUpload = async (req, res) => {
 	const item = new Item({
 		title,
 		description,
-		hashtags: hashtags.split(",").map((word) => `#${word}`)
+		hashtags: Item.procHashtag(hashtags)
 	});
+	console.log(item);
 	const newItem = await item.save();
 	res.redirect(`${newItem._id}`);
 };
@@ -39,7 +40,7 @@ export const postUpdate = async (req, res) => {
 		await Item.findByIdAndUpdate(id, {
 			title,
 			description,
-			hashtags
+			hashtags: Item.procHashtag(hashtags)
 		});
 		res.redirect("/");
 	} catch(error) {

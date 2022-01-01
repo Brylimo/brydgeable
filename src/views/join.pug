@@ -1,4 +1,10 @@
 extends base
 
 block content 
-	h1 #{title}
+	form(method="POST")
+		input(name="name" type="text" placeholder="name")
+		input(name="email" type="email" placeholder="email")
+		input(name="username" type="text" placeholder="username")
+		input(name="password" type="password" placeholder="password")
+		input(name="password2" type="password" placeholder="password2")
+		input(type="submit" value="submit")

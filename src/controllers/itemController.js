@@ -18,7 +18,6 @@ export const postUpload = async (req, res) => {
 		description,
 		hashtags: Item.procHashtag(hashtags)
 	});
-	console.log(item);
 	const newItem = await item.save();
 	res.redirect(`${newItem._id}`);
 };
@@ -62,11 +61,15 @@ export const getSearch = async (req, res) => {
 	const { keyword } = req.query;
 	let items = [];
 	if (keyword) {
-		items = await Item.find({ 
-			title: {
-				$regex: new RegExp(keyword, "i"),
-			}
-		});
+		try {
+			items = await Item.find({ 
+				title: {
+					$regex: new RegExp(keyword, "i"),
+				}
+			});
+		} catch(error) {
+			console.log(error);
+		}
 	}
 	return res.render("search", {title: "search", items});
 };

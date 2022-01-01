@@ -57,3 +57,16 @@ export const handleDelete = async (req, res) => {
 		return res.render("error", {title: "error"});
 	}
 }
+
+export const getSearch = async (req, res) => {
+	const { keyword } = req.query;
+	let items = [];
+	if (keyword) {
+		items = await Item.find({ 
+			title: {
+				$regex: new RegExp(keyword, "i"),
+			}
+		});
+	}
+	return res.render("search", {title: "search", items});
+};

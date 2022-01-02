@@ -4,6 +4,7 @@ import session from "express-session";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import itemRouter from "./routers/itemRouter";
+import { localsMiddleware } from "./middlewares";
 
 const app = express();
 
@@ -15,7 +16,8 @@ app.use(session({
 	secret: 'keyboard cat',
 	resave: true,
 	saveUninitialized: true
-}))
+}));
+app.use(localsMiddleware);
 app.use("/", globalRouter);
 app.use("/user", userRouter);
 app.use("/item", itemRouter);

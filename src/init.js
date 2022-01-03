@@ -1,7 +1,8 @@
-import app from "./app";
+import "dotenv/config";
 import "./db";
 import "./models/Item";
 import "./models/User";
+import app from "./app";
 
 const PORT = 8000;
 

@@ -1,6 +1,7 @@
 import express from "express";
 import logger from "morgan";
 import session from "express-session";
+import MongoStore from "connect-mongo";
 import globalRouter from "./routers/globalRouter";
 import userRouter from "./routers/userRouter";
 import itemRouter from "./routers/itemRouter";
@@ -15,7 +16,8 @@ app.use(express.urlencoded({extended:true}));
 app.use(session({
 	secret: 'keyboard cat',
 	resave: true,
-	saveUninitialized: true
+	saveUninitialized: false,
+	store: MongoStore.create({ mongoUrl: 'mongodb://127.0.0.1:27017/brydgeable' })
 }));
 app.use(localsMiddleware);
 app.use("/", globalRouter);

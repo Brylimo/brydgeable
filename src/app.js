@@ -21,7 +21,7 @@ app.use(session({
 }));
 app.use(localsMiddleware);
 app.use("/", globalRouter);
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 app.use("/item", itemRouter);
 
 export default app;

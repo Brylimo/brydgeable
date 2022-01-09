@@ -100,7 +100,8 @@ export const finishGithubLogin = async (req, res) => {
 			req.session.user = existingUser;
 			return res.redirect("/");
 		} else {
-			const user = await User.create({
+			await User.create({
+				avatarUrl: userObject.avatar_url,
 				name: userObject.name,
 				email: emailObj.email,
 				username: userObject.login,
@@ -115,4 +116,9 @@ export const finishGithubLogin = async (req, res) => {
 	} else {
 		return res.redirect("/login");
 	}
+};
+
+export const logout = (req, res) => {
+	req.session.destroy();
+	return res.redirect('/');
 };

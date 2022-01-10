@@ -129,15 +129,15 @@ export const getEdit = (req, res) => {
 
 export const postEdit = async (req, res) => {
 	const { session: {
-		user: { _id },
+		user: { _id, avatarUrl },
 		},
 		body: {name, email, username},
+		file
 	} = req;
 
 	if (username !== req.session.user.username) // update
 	{
 		const usernameExist = await User.exists({ username });
-		console.log(usernameExist);
 		if (usernameExist) {
 			return res.redirect("/users/edit");
 		}
@@ -150,12 +150,19 @@ export const postEdit = async (req, res) => {
 		}
 	} 
 	await User.findByIdAndUpdate(_id, {
-		name, email, username
+		avatarUrl: file ? file.path : avatarUrl,
+		name,
+		email,
+		username 
 	});
 	req.session.user = {
 		...req.session.user,
-		name, email, username
+		avatarUrl: file ? file.path : avatarUrl,
+		name,
+		email,
+		username
 	};
+	console.log(req.session.user);
 	return res.redirect("/users/edit");
 };
 

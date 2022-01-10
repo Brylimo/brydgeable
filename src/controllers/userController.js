@@ -134,6 +134,21 @@ export const postEdit = async (req, res) => {
 		body: {name, email, username},
 	} = req;
 
+	if (username !== req.session.user.username) // update
+	{
+		const usernameExist = await User.exists({ username });
+		console.log(usernameExist);
+		if (usernameExist) {
+			return res.redirect("/users/edit");
+		}
+	} 
+	if (email !== req.session.user.email) // update
+	{
+		const emailExist = await User.exists({ email });
+		if (emailExist) {
+			return res.redirect("/users/edit");
+		}
+	} 
 	await User.findByIdAndUpdate(_id, {
 		name, email, username
 	});
@@ -141,5 +156,5 @@ export const postEdit = async (req, res) => {
 		...req.session.user,
 		name, email, username
 	};
-	return res.rendirect("users/edit");
+	return res.redirect("/users/edit");
 };

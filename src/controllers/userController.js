@@ -94,13 +94,13 @@ export const finishGithubLogin = async (req, res) => {
 			 (email) => email.primary === true &&
 			  email.verified === true);
 		if (!emailObj) res.redirect("/login");
-		const existingUser = await User.findOne({ email: emailObj.email });
-		if (existingUser) {
+		let user = await User.findOne({ email: emailObj.email });
+		if (user) {
 			req.session.loggedIn = true;
-			req.session.user = existingUser;
+			req.session.user = user;
 			return res.redirect("/");
 		} else {
-			await User.create({
+			user = await User.create({
 				avatarUrl: userObject.avatar_url,
 				name: userObject.name,
 				email: emailObj.email,
@@ -109,7 +109,7 @@ export const finishGithubLogin = async (req, res) => {
 				social: true
 			});
 			req.session.loggedIn = true;
-			req.session.user = existingUser;
+			req.session.user = user;
 			return res.redirect("/");
 		}
 
@@ -158,3 +158,38 @@ export const postEdit = async (req, res) => {
 	};
 	return res.redirect("/users/edit");
 };
+
+export const getChangePassword = (req, res) => {
+	if (req.session.user.social === true) {
+		return res.redirect("/");
+	}
+	return res.render("change-password", {title: "Change Password"});
+}
+
+export const postChangePassword = async (req, res) => {
+	const { session: {
+		user: { _id, password },
+		},
+		body: {oldPassword, newPassword, newPassword2},
+	} = req
+
+	const ok = await bcrypt.compare(oldPassword, password);
+	if (!ok) {
+		return res.status(400).render("change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "The current password is incorrect",
+		});
+	}
+	if (newPassword !== newPassword2)
+	{
+		return res.status(400).render("change-password", {
+			pageTitle: "Change Password",
+			errorMessage: "The password does not match the confirmation"
+		});
+	}
+	const user = await User.findById( _id );
+	user.password = newPassword;
+	await user.save();
+	req.session.user.password = user.password;	
+	return res.redirect("/");
+}

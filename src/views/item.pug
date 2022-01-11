@@ -2,8 +2,10 @@ extends base
 include mixins/items
 
 block content 
-	h1 #{title}
-	+items(item)
-	a(href=`${item._id}/update`) Update &rarr; 
+	video(src="/" + item.fileUrl, controls)
+	div 
+		p=item.description
+		small=item.createdAt
+	a(href=`${item.id}/edit`) Edit Video &rarr;
 	br
-	a(href=`${item._id}/delete`) Delete &rarr;
+	a(href=`${item.id}/delete`) Delete Video &rarr;

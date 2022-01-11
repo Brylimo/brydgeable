@@ -2,7 +2,14 @@ import User from "../models/User";
 import bcrypt from "bcrypt";
 import fetch from "node-fetch";
 
-export const handleUser = (req, res) => res.send("user");
+export const handleUser = async (req, res) => {
+	const {id} = req.params;
+	const user = await User.findById(id);
+	if (!user) {
+		return res.status(404).render("error", {title: "User not found."});
+	}
+	return res.render("users/profile", {title:user.name, user});	
+}
 export const getJoin = (req, res) => res.render("join", {title: "join"});
 export const postJoin = async (req, res) => {
 	try {

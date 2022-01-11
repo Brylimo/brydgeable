@@ -11,7 +11,9 @@ html(lang="ko")
 						a(href="/") home
 					if loggedIn
 						li 
-							a(href="/item/upload") upload
+							a(href="/item/upload") Upload Video
+						li 
+							a(href=`/users/${user._id}`) My Profile
 						li 
 							a(href="/users/edit") Edit Profile
 						li 

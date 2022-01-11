@@ -1,21 +1,22 @@
 import Item from "../models/Item";
 
-export const handleItem = async (req, res) => {
+export const watch = async (req, res) => {
 	const { id } = req.params;
-	try {
-		const item = await Item.findById(id);
-		return res.render("item", {title : item.title, item});
-	} catch(error) {
-		return res.render("error", {title: "error"});
+	const item = await Item.findById(id);
+	if (!item) {
+		return res.status(404).render("error", {title: "Video not found."});
 	}
+	return res.render("item", {title : item.title, item});
 };
 
 export const getUpload = (req, res) => res.render("upload", {title: "upload"});
 export const postUpload = async (req, res) => {
+	const { path: fileUrl } = req.file;
 	const { title, description, hashtags } = req.body;
 	const item = new Item({
 		title,
 		description,
+		fileUrl,
 		hashtags: Item.procHashtag(hashtags)
 	});
 	const newItem = await item.save();
@@ -28,7 +29,7 @@ export const getUpdate = async (req, res) => {
 		const item = await Item.findById(id);
 		return res.render("update", {title: "update", item}); 
 	} catch(error) {
-		return res.render("error", {title: "error"});
+		return res.status(404).render("error", {title: "error"});
 	}
 };
 

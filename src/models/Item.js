@@ -7,7 +7,8 @@ const itemSchema = new mongoose.Schema({
 	createdAt: {type: Date, required: true, default: Date.now()},
 	hashtags: [{ type: String, required: true}],
 	views: {type: Number, required: true, default: 0},
-	likes: {type: Number, required: true, default: 0}
+	likes: {type: Number, required: true, default: 0},
+	owner: {type:mongoose.Schema.Types.ObjectId, required: true, ref: "User"}
 });
 
 itemSchema.static('procHashtag', function(hashtags) {

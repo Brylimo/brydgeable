@@ -4,11 +4,11 @@ import fetch from "node-fetch";
 
 export const handleUser = async (req, res) => {
 	const {id} = req.params;
-	const user = await User.findById(id);
+	const user = await User.findById(id).populate("items");
 	if (!user) {
 		return res.status(404).render("error", {title: "User not found."});
 	}
-	return res.render("users/profile", {title:user.name, user});	
+	return res.render("profile", {title:user.name, user});
 }
 export const getJoin = (req, res) => res.render("join", {title: "join"});
 export const postJoin = async (req, res) => {

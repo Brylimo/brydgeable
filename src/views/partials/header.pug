@@ -1,0 +1,22 @@
+header 
+	a(href="/")
+		i.fab.fa-youtube
+	nav 
+		ul 
+			if loggedIn
+				li 
+					a(href="/item/upload") Upload Video
+				li 
+					a(href=`/users/${user._id}`) My Profile
+				li 
+					a(href="/users/edit") Edit Profile
+				li 
+					a(href="/logout") log out
+			else 
+				li 
+					a(href="/join") join
+				li 
+					a(href="/login") login
+			li 
+				a(href='/search') search
+	h1 brydgeable

@@ -2,8 +2,23 @@ extends base
 include mixins/items
 
 block content 
+	div.video-grid
 	each item in items
 		+items(item)
-		hr
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
+		+items(item)
 	else
-		li sorry, nothing found.
+		span.empty__message No video found.

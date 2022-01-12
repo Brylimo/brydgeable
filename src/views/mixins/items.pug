@@ -1,9 +1,8 @@
 mixin items(item)
-	div
-		h3
-			a(href=`/item/${item._id}`)=item.title 
-		ul 
-			li=item.description 
-			li=item.createdAt 
-			li=item.views 
-			li=item.likes
+	a(href=`/item/${item.id}`).video-mixin
+		div.video-mixin__thumb
+		div.video-mixin__data
+			span.video-mixin__title=item.title 
+			div.video-mixin__meta
+				span #{item.owner.owner}
+				span #{item.views}회

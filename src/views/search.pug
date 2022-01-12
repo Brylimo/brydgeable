@@ -2,9 +2,12 @@ extends base
 include mixins/items
 
 block content 
-	form(method="GET")
+	form(method="GET").search__form
 		input(type="text" name="keyword")
 		input(type="submit" value="search")
 
-	each item in items
-		+items(item)
+	div.video-grid
+		each item in items
+			+items(item)
+		else
+			span.empty__message No video found.

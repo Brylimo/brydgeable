@@ -96,7 +96,7 @@ export const getSearch = async (req, res) => {
 				title: {
 					$regex: new RegExp(keyword, "i"),
 				}
-			});
+			}).populate("owner");
 		} catch(error) {
 			console.log(error);
 		}

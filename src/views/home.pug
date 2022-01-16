@@ -3,22 +3,7 @@ include mixins/items
 
 block content 
 	div.video-grid
-	each item in items
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-		+items(item)
-	else
-		span.empty__message No video found.
+		each item in items
+			+items(item)
+		else
+			span.empty__message No video found.

@@ -4,7 +4,13 @@ import fetch from "node-fetch";
 
 export const handleUser = async (req, res) => {
 	const {id} = req.params;
-	const user = await User.findById(id).populate("items");
+	const user = await User.findById(id).populate({
+		path: "items",
+		populate: {
+			path: "owner",
+			model: "user",
+		},
+	});
 	if (!user) {
 		return res.status(404).render("error", {title: "User not found."});
 	}

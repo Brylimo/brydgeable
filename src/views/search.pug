@@ -3,8 +3,9 @@ include mixins/items
 
 block content 
 	form(method="GET").search__form
-		input(type="text" name="keyword")
-		input(type="submit" value="search")
+		input(type="text" name="keyword" placeholder="Search by title")
+		button
+			i.fas.fa-search
 
 	div.video-grid
 		each item in items

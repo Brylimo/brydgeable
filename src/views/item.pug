@@ -3,13 +3,22 @@ include mixins/items
 
 block content 
 	video(src="/" + item.fileUrl, controls)
-	div 
-		p=item.description
-		small=item.createdAt
-	div 
-		small Uploaded by 
-			a(href=`/users/${item.owner._id}`) #{item.owner.name}
-	if String(item.owner._id) === String(user._id)
-		a(href=`${item.id}/update`) Edit Video &rarr;
-		br
-		a(href=`${item.id}/delete`) Delete Video &rarr;
+	div 	
+		button#play Play
+		button#mute Mute
+		span#time 00:00/00:00
+		input(type="range" step="0.1" min="0" max="1")#volume
+	//-
+		div 
+			p=item.description
+			small=item.createdAt
+		div 
+			small Uploaded by 
+				a(href=`/users/${item.owner._id}`) #{item.owner.name}
+		if String(item.owner._id) === String(user._id)
+			a(href=`${item.id}/update`) Edit Video &rarr;
+			br
+			a(href=`${item.id}/delete`) Delete Video &rarr;
+
+block scripts 
+	script(src="/static/js/videoPlayer.js")

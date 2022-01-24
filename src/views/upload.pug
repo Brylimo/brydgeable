@@ -1,6 +1,11 @@
 extends base
 
-block content 
+block content
+	div 
+		video#preview
+		button#startBtn Start Recording
+	if errorMessage
+		span=errorMessage
 	form(method="POST", enctype="multipart/form-data")
 		label(for="video")
 		input(name="video" type="file" accept="video/*" required id="video")
@@ -8,3 +13,6 @@ block content
 		input(name="description" type="text" placeholder="description")
 		input(name="hashtags" type="text" placeholder="hashtag separated by comma")
 		input(type="submit" value="submit")
+
+block scripts
+	script(src="/static/js/recorder.js")

@@ -10,6 +10,8 @@
   "author": "Brylimo<icj0103@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@ffmpeg/core": "^0.10.0",
+    "@ffmpeg/ffmpeg": "^0.10.1",
     "bcrypt": "^5.0.1",
     "connect-mongo": "^4.6.0",
     "dotenv": "^10.0.0",

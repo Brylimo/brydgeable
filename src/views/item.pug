@@ -2,7 +2,7 @@ extends base
 include mixins/items
 
 block content 
-	div#videoContainer
+	div#videoContainer(data-id=item._id)
 		video(src="/" + item.fileUrl)
 		div#videoControls.videoControls
 			div.videoControls__play

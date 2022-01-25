@@ -40,6 +40,7 @@ export const getUpdate = async (req, res) => {
 			return res.status(404).render("error", {title: "Video not found."});
 		}
 		if (String(item.owner) !== String(req.session.user._id)) {
+			req.flash("error", "Not authorized");
 			return res.status(403).redirect("/");
 		}
 		return res.render("update", {title: "update", item}); 
@@ -56,6 +57,7 @@ export const postUpdate = async (req, res) => {
 		return res.status(404).render("error", {title: "Video not found."});
 	}
 	if (String(item.owner) !== String(req.session.user._id)) {
+		req.flash("error", "You are not the owner of the video");
 		return res.status(403).redirect("/");
 	}
 	try {

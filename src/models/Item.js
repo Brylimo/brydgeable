@@ -9,6 +9,7 @@ const itemSchema = new mongoose.Schema({
 	hashtags: [{ type: String, required: true}],
 	views: {type: Number, required: true, default: 0},
 	likes: {type: Number, required: true, default: 0},
+	comments: [{type:mongoose.Schema.Types.ObjectId, required: true, ref: "Comment"}],
 	owner: {type:mongoose.Schema.Types.ObjectId, required: true, ref: "User"}
 });
 

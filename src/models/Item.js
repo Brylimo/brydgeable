@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 
 const itemSchema = new mongoose.Schema({
-	title: {type: String, required: true},
+	title: {type: String, required: true, trim: true},
 	fileUrl: {type: String, required: true},
-	description: {type: String, required: true},
+	thumbUrl: {type: String, required: true},
+	description: {type: String, required: true, trim: true, minLength: 2},
 	createdAt: {type: Date, required: true, default: Date.now()},
 	hashtags: [{ type: String, required: true}],
 	views: {type: Number, required: true, default: 0},

@@ -20,6 +20,7 @@ app.use((_, res, next) => {
 });
 app.use(logger("dev"));
 app.use(express.urlencoded({extended:true}));
+app.use(express.json());
 app.use(session({
 	secret: process.env.COOKIE_SECRET,
 	resave: true,
